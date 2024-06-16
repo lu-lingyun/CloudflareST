@@ -1,12 +1,14 @@
 name: CI
 
 on:
+  schedule:
+    - cron: '0 */6 * * *'
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-  
+
 permissions:
   contents: write
 
@@ -25,9 +27,9 @@ jobs:
         run: chmod +x CloudflareST
 
       - name: Run script
-        run: ./CloudflareST -tp 443 -sl 100 -n 1000 -dn 20 -tl 1000 -tlr 0
+        run: ./CloudflareST -tp 443 -sl 300 -n 1000 -dn 20 -tl 200 -tlr 0
 
-      - name: convert_csv_to_tls.py
+      - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
 
       - name: Commit and push changes
