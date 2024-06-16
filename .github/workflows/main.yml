@@ -28,7 +28,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          git config --local user.email "action@github.com"
+          git config --local user.email "1668589925@qq.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Update IP list"
