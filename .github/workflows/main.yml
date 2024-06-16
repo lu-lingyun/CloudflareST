@@ -32,5 +32,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add result.csv
           git commit -m "Update IP list"
-          git remote add origin https://github.com/CF-Pageso/CloudflareST.git
           git push origin main
