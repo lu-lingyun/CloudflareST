@@ -25,7 +25,7 @@ jobs:
         run: chmod +x CloudflareST
 
       - name: Run script
-        run: ./CloudflareST -tp 443 -cfcolo TPE -sl 10 -p 15 -n 1000 -dn 15 -tl 1000 -tlr 0
+        run: ./CloudflareST -tp 443 -sl 100 -p 100 -n 1000 -dn 100 -tl 1000 -tlr 0
 
       - name: Commit and push changes
         env:
