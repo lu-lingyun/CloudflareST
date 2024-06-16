@@ -27,7 +27,7 @@ jobs:
         run: chmod +x CloudflareST
 
       - name: Run script
-        run: ./CloudflareST -tp 443 -sl 300 -n 1000 -dn 20 -tl 200 -tlr 0
+        run: ./CloudflareST -tp 443 -sl 300 -n 1000 -dn 20 -tlr 0
 
       - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
