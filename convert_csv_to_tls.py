@@ -2,16 +2,13 @@ import csv
 
 def convert_csv_to_tls(csv_filename, output_filename):
     transformed_data = []
-    with open(csv_filename, 'r', encoding='utf-8') as infile:
+    with open(csv_filename, 'r', encoding='utf-8') as infile, \
+         open(output_filename, 'w', encoding='utf-8') as outfile:
         reader = csv.reader(infile)
-        next(reader)  # Skip header
-        for original_ip in reader:
-            formatted_ip = f"{original_ip[0]}:443#测试节点请勿测速"
-            transformed_data.append(formatted_ip)
-
-    with open(output_filename, 'w', encoding='utf-8') as outfile:
-        for data in transformed_data:
-            outfile.write(data + '\n')
+        next(reader)  # 跳过标题行
+        for row in reader:
+            formatted_ip = f"{row[0]}:443#测试节点请勿测速"
+            outfile.write(formatted_ip + '\n')
 
 if __name__ == "__main__":
     csv_filename = 'result.csv'
