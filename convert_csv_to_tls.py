@@ -2,8 +2,7 @@ import csv
 
 def convert_csv_to_tls(csv_filename, output_filename):
     transformed_data = []
-    with open(csv_filename, 'r', encoding='utf-8') as infile, \
-         open(output_filename, 'w', encoding='utf-8') as outfile:
+    with open(csv_filename, 'r', encoding='utf-8') as infile, open(output_filename, 'w', encoding='utf-8') as outfile:
         reader = csv.reader(infile)
         next(reader)  # 跳过标题行
         for row in reader:
