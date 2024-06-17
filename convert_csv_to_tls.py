@@ -7,7 +7,7 @@ def convert_csv_to_tls(csv_filename, output_filename):
         reader = csv.reader(infile)
         next(reader)  # 跳过标题行
         for row in reader:
-            formatted_ip = f"{row[0]}:443#测试节点请勿测速"
+            formatted_ip = f"{row[0]}:443#自选优选IP"
             outfile.write(formatted_ip + '\n')
 
 if __name__ == "__main__":
