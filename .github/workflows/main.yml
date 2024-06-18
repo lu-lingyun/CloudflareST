@@ -26,11 +26,17 @@ jobs:
       - name: Make script executable
         run: chmod +x CloudflareST
 
-      - name: Run script
+      - name: TLS
         run: ./CloudflareST -tp 443 -sl 100 -n 1000 -tlr 0
 
       - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
+
+      - name: notls
+        run: .\CloudflareST -tp 80 -n 1000 -tlr 0
+
+      - name: convert_csv_to_notls
+        run: python convert_csv_to_tls.py notls
 
       - name: Commit and push changes
         env:
@@ -38,6 +44,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add TLS.txt
+          git add *.txt
           git commit -m "Update IP list"
           git push
