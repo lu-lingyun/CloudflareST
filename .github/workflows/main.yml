@@ -33,7 +33,7 @@ jobs:
         run: python convert_csv_to_tls.py
 
       - name: notls
-        run: ./CloudflareST -tp 80 -n 1000 -tlr 0 -cfcolo HKG -allip
+        run: ./CloudflareST -tp 80 -n 1000 -tlr 0 -cfcolo HKG
 
       - name: convert_csv_to_notls
         run: python convert_csv_to_tls.py notls
