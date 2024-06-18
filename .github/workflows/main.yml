@@ -40,4 +40,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add TLS.txt
           git commit -m "Update IP list"
-          git push origin main
+          git push
