@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
@@ -32,11 +32,11 @@ jobs:
       - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
 
-      # - name: notls
-      #   run: ./CloudflareST -tp 80 -n 1000 -tlr 0 -cfcolo HKG
+      - name: notls
+        run: ./CloudflareST -tp 80 -n 1000 -tlr 0 -cfcolo HKG
 
-      # - name: convert_csv_to_notls
-      #   run: python convert_csv_to_tls.py notls
+      - name: convert_csv_to_notls
+        run: python convert_csv_to_tls.py notls
 
       - name: Commit and push changes
         env:
