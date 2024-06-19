@@ -13,8 +13,9 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    runs-on: [self-hosted, linux, x64]
+  check-bats-version:
+    runs-on:
+      group: Default
 
     steps:
       - name: Checkout repository
