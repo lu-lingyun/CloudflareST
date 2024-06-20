@@ -13,9 +13,8 @@ permissions:
   contents: write
 
 jobs:
-  check-bats-version:
-    runs-on:
-      group: Default
+  build:
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
@@ -48,7 +47,7 @@ jobs:
           git add *.txt
           git commit -m "Update IP list"
           git push
-          
+
           # 重试逻辑
           if [ $? -ne 0 ]; then
             echo "Commit and push failed, retrying..."
