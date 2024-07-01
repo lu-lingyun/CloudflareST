@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -47,10 +47,3 @@ jobs:
           git add *.txt
           git commit -m "Update IP list"
           git push
-
-          # 重试逻辑
-          if [ $? -ne 0 ]; then
-            echo "Commit and push failed, retrying..."
-            sleep 5  # 等待5秒后重试
-            git push
-          fi
