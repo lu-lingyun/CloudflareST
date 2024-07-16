@@ -27,7 +27,7 @@ jobs:
         run: chmod +x CloudflareST
 
       - name: TLS
-        run: ./CloudflareST -tp 443 -n 1000 -tlr 0 -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
+        run: ./CloudflareST -tp 443 -n 1000 -tlr 0
 
       - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
