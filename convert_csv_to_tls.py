@@ -9,9 +9,9 @@ def convert_csv_to_tls(csv_filename, TLS, notls=False):
         next(reader)
         for row in reader:
             if notls:
-                formatted_ip = f"{row[0]}:80#[香港]自动优选快速-[使用本节点时请勿访问/发布色情涉政等非法内容]"
+                formatted_ip = f"{row[0]}:80#自动优选快速-[使用本节点时请勿访问/发布色情涉政等非法内容]"
             else:
-                formatted_ip = f"{row[0]}:443#[香港]自动优选"
+                formatted_ip = f"{row[0]}:443#自动优选"
             outfile.write(formatted_ip + '\n')
 
 if __name__ == "__main__":
