@@ -1,10 +1,10 @@
-172.65.1.212:443#[Toronto, Canada]-自动优选
-172.65.7.254:443#[Toronto, Canada]-自动优选
-172.65.10.5:443#[Toronto, Canada]-自动优选
-172.65.23.240:443#[Toronto, Canada]-自动优选
-172.65.2.37:443#[Toronto, Canada]-自动优选
-172.65.12.110:443#[Toronto, Canada]-自动优选
-172.65.77.109:443#[Toronto, Canada]-自动优选
-172.65.71.71:443#[Toronto, Canada]-自动优选
-172.65.65.128:443#[Toronto, Canada]-自动优选
-172.64.38.76:443#[Toronto, Canada]-自动优选
+104.24.50.194:443#[Toronto, Canada]-自动优选
+172.64.192.238:443#[San Francisco, United States]-自动优选
+172.64.207.105:443#[Newark, United States]-自动优选
+104.24.61.123:443#[Toronto, Canada]-自动优选
+104.24.43.187:443#[Toronto, Canada]-自动优选
+172.64.229.97:443#[Toronto, Canada]-自动优选
+172.65.43.206:443#[Toronto, Canada]-自动优选
+172.64.228.73:443#[Toronto, Canada]-自动优选
+172.65.44.149:443#[Toronto, Canada]-自动优选
+172.65.54.61:443#[Toronto, Canada]-自动优选
