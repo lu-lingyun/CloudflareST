@@ -7,12 +7,12 @@ def get_location(ip):
         response = requests.get(f'http://ip-api.com/json/{ip}')
         data = response.json()
         if data['status'] == 'success':
-            return data['city'], data['country']
+            return data['country']
         else:
-            return None, None
+            return None
     except requests.RequestException as e:
         print(f"Error getting location for IP {ip}: {e}")
-        return None, None
+        return None
 
 def convert_csv_to_tls(csv_filename, TLS, notls=False):
     output_filename = 'notls.txt' if notls else TLS
@@ -21,9 +21,9 @@ def convert_csv_to_tls(csv_filename, TLS, notls=False):
         next(reader)  # Skip header row
         for row in reader:
             ip = row[0]
-            city, country = get_location(ip)
-            if city and country:
-                variable = f"[{city}, {country}]"
+            country = get_location(ip)
+            if country:
+                variable = f"[{country}]"
             else:
                 variable = "[位置获取失败]"
 
@@ -31,7 +31,7 @@ def convert_csv_to_tls(csv_filename, TLS, notls=False):
                 formatted_ip = f"{ip}:80#{variable}-自动优选快速-[使用本节点时请勿访问/发布色情涉政等非法内容]"
             else:
                 formatted_ip = f"{ip}:443#{variable}-自动优选"
-            
+
             outfile.write(formatted_ip + '\n')
 
 if __name__ == "__main__":
