@@ -7,7 +7,7 @@ def get_location(ip):
         response = requests.get(f'http://ip-api.com/json/{ip}')
         data = response.json()
         if data['status'] == 'success':
-            return data['country']
+            return data['countryCode']
         else:
             return None
     except requests.RequestException as e:
@@ -21,9 +21,9 @@ def convert_csv_to_tls(csv_filename, TLS, notls=False):
         next(reader)  # Skip header row
         for row in reader:
             ip = row[0]
-            country = get_location(ip)
-            if country:
-                variable = f"[{country}]"
+            countryCode = get_location(ip)
+            if countryCode:
+                variable = f"[{countryCode}]"
             else:
                 variable = "[位置获取失败]"
 
