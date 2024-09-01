@@ -1,6 +1,6 @@
 import csv
-import sys
 import requests
+import sys  # 添加sys模块的导入
 
 def get_location(ip):
     try:
@@ -13,7 +13,7 @@ def get_location(ip):
 def convert_csv_to_tls(csv_filename, output_filename, notls=False):
     with open(csv_filename, 'r', encoding='utf-8') as infile, open(output_filename, 'w', encoding='utf-8') as outfile:
         reader = csv.reader(infile)
-        next(reader)   # Skip header row
+        next(reader)  # Skip header row
         for row in reader:
             ip = row[0]
             countryCode = get_location(ip)
@@ -27,5 +27,6 @@ def convert_csv_to_tls(csv_filename, output_filename, notls=False):
 if __name__ == "__main__":
     csv_filename = 'result.csv'
     # Determine the output filename based on the notls flag
-    output_filename = 'notls.txt' if sys.argv[1] == 'notls' else 'TLS.txt'
+    # If no argument is provided, default to 'TLS.txt'
+    output_filename = 'notls.txt' if len(sys.argv) > 1 and sys.argv[1] == 'notls' else 'TLS.txt'
     convert_csv_to_tls(csv_filename, output_filename, notls=(output_filename == 'notls.txt'))
