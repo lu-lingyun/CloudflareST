@@ -1,4 +1,5 @@
 import csv
+import sys
 import requests
 
 def get_location(ip):
