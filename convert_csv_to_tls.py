@@ -21,7 +21,7 @@ def convert_csv_to_tls(csv_filename, output_filename, notls=False):
             port = ":443" if not notls else ":80"
             formatted_ip = f"{ip}{port}#{variable}-自动优选"
             if notls:
-                formatted_ip += "-快速-[使用本节点时请勿访问/发布色情涉政等非法内容]"
+                formatted_ip += "-快速-[NOTLS]"
             outfile.write(formatted_ip + '\n')
 
 if __name__ == "__main__":
