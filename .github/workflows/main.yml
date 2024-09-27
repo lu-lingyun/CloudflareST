@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download IP list
-        run: > ip.txt && wget -qO- https://www.cloudflare-cn.com/ips-v4/# | tee -a ip.txt && echo >> ip.txt && wget -qO- https://www.cloudflare.com/ips-v6/# | tee -a ip.txt
+        run: wget -qO- https://www.cloudflare-cn.com/ips-v4/# | tee -a ip.txt && echo >> ip.txt && wget -qO- https://www.cloudflare.com/ips-v6/# | tee -a ip.txt
 
       - name: Make script executable
         run: chmod +x CloudflareST
