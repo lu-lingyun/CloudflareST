@@ -19,20 +19,17 @@ jobs:
       - name: Download IP list
         run: rm -f ip.txt && wget -qO- https://www.cloudflare-cn.com/ips-v4/# | tee -a ip.txt && echo >> ip.txt && wget -qO- https://www.cloudflare.com/ips-v6/# | tee -a ip.txt
 
-      - name: 官方不死IP
-        run: python a.py
-
       - name: Make script executable
         run: chmod +x CloudflareST
 
       - name: TLS
-        run: ./CloudflareST -tp 443 -n 1000 -dd
+        run: ./CloudflareST -tp 443 -n 1000
 
       - name: convert_csv_to_tls
         run: python convert_csv_to_tls.py
 
       - name: notls
-        run: ./CloudflareST -tp 80 -n 1000 -dd
+        run: ./CloudflareST -tp 80 -n 1000
 
       - name: convert_csv_to_notls
         run: python convert_csv_to_tls.py notls
