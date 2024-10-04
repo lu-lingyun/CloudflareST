@@ -1,19 +1,15 @@
-import csv
+import pandas as pd
 import sys
 
 def convert_csv_to_tls(csv_filename, output_filename):
-    with open(csv_filename, 'r', encoding='utf-8') as infile, open(output_filename, 'w', encoding='utf-8') as outfile:
-        reader = csv.reader(infile)
-        next(reader)   # 跳过标题行（如果有的话）
-        count = 0
-        for row in reader:
-            if count >= 10:  # 只处理前10条IP地址
-                break
-            ip = row[0]
-            outfile.write(ip + '\n')
-            count += 1
+    # 使用pandas读取CSV文件
+    df = pd.read_csv(csv_filename, encoding='utf-8')
+    # 选取第一列，并且只取前10行
+    ips = df.iloc[:, 0].head(10)
+    # 将IP地址写入文件，每个IP地址一行
+    ips.to_csv(output_filename, index=False, header=False)
 
-if __name__ == "__main__":
-    csv_filename = 'result.csv'
-    output_filename = 'notls.txt' if len(sys.argv) > 1 and sys.argv[1] == 'notls' else 'TLS.txt'
-    convert_csv_to_tls(csv_filename, output_filename)
+# 假设csv_filename为 'result.csv'
+csv_filename = 'result.csv'
+output_filename = 'notls.txt' if len(sys.argv) > 1 and sys.argv[1] == 'notls' else 'TLS.txt'
+convert_csv_to_tls(csv_filename, output_filename)
