@@ -20,8 +20,7 @@ jobs:
         run: rm -f ip.txt && wget -qO- https://www.cloudflare-cn.com/ips-v4/# | tee -a ip.txt && echo >> ip.txt && wget -qO- https://www.cloudflare.com/ips-v6/# | tee -a ip.txt
 
       - name: Make script executable
-        run: chmod +x CloudflareST
-        run: pip install pandas
+        run: chmod +x CloudflareST && pip install pandas
 
       - name: TLS
         run: ./CloudflareST -tp 443 -n 1000 -dd
