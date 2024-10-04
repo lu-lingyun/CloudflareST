@@ -21,6 +21,7 @@ jobs:
 
       - name: Make script executable
         run: chmod +x CloudflareST
+        run: pip install pandas
 
       - name: TLS
         run: ./CloudflareST -tp 443 -n 1000 -dd
