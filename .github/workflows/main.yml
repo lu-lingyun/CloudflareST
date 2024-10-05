@@ -17,27 +17,38 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download IP list
-        run: rm -f ip.txt && wget -qO- https://www.cloudflare-cn.com/ips-v4/# | tee -a ip.txt && echo >> ip.txt && wget -qO- https://www.cloudflare.com/ips-v6/# | tee -a ip.txt
+        run: |
+          set -e  # 出现错误时停止执行
+          rm -f ip.txt
+          {
+            wget -qO- https://www.cloudflare-cn.com/ips-v4/#
+            echo ""
+            wget -qO- https://www.cloudflare.com/ips-v6/#
+          } | tee -a ip.txt
 
-      - name: Make script executable
-        run: chmod +x CloudflareST && pip install pandas
+      - name: Make script executable and install dependencies
+        run: |
+          set -e
+          chmod +x CloudflareST
+          pip install pandas
 
-      - name: TLS
-        run: ./CloudflareST -tp 443 -n 1000 -dd
+      - name: Run TLS scan
+        run: |
+          set -e
+          ./CloudflareST -tp 443 -n 1000 -dd
+          python convert_csv_to_tls.py
 
-      - name: convert_csv_to_tls
-        run: python convert_csv_to_tls.py
-
-      - name: notls
-        run: ./CloudflareST -tp 80 -n 1000 -dd
-
-      - name: convert_csv_to_notls
-        run: python convert_csv_to_tls.py notls
+      - name: Run notls scan
+        run: |
+          set -e
+          ./CloudflareST -tp 80 -n 1000 -dd
+          python convert_csv_to_tls.py notls
 
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add *.txt
