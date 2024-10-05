@@ -1,43 +1,43 @@
 import socket
 import time
 
-def measure_speed(ip, port=443, data_size=1024*1024):  # 默认发送1MB的数据
+def 测量速度(ip, port=443, data_size=1024*1024):  # 默认发送1MB的数据
     sock = socket.socket(socket.AF_INET6 if ':' in ip else socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(5)
 
     try:
-        start_time = time.time()
+        开始时间 = time.time()
         sock.connect((ip, port))
 
         # 模拟上传数据
-        data = b'x' * data_size  # 创建要上传的数据
-        sock.sendall(data)  # 上传数据
+        数据 = b'x' * data_size  # 创建要上传的数据
+        sock.sendall(数据)  # 上传数据
 
-        upload_end_time = time.time()
-        upload_time = upload_end_time - start_time
-        upload_speed = data_size / upload_time / (1024 * 1024)  # 计算上传速度 (MB/s)
+        上传结束时间 = time.time()
+        上传时间 = 上传结束时间 - 开始时间
+        上传速度 = data_size / 上传时间 / (1024 * 1024)  # 计算上传速度 (MB/s)
 
         # 模拟下载数据
-        received_data = b''
-        while len(received_data) < data_size:
-            packet = sock.recv(4096)  # 每次接收4096字节
-            if not packet:
+        接收数据 = b''
+        while len(接收数据) < data_size:
+            数据包 = sock.recv(4096)  # 每次接收4096字节
+            if not 数据包:
                 break
-            received_data += packet
+            接收数据 += 数据包
 
-        download_end_time = time.time()
-        download_time = download_end_time - upload_end_time
-        download_speed = len(received_data) / download_time / (1024 * 1024)  # 计算下载速度 (MB/s)
+        下载结束时间 = time.time()
+        下载时间 = 下载结束时间 - 上传结束时间
+        下载速度 = len(接收数据) / 下载时间 / (1024 * 1024)  # 计算下载速度 (MB/s)
 
-        return upload_speed, download_speed
+        return 上传速度, 下载速度
     finally:
         sock.close()
 
-with open('TLS.txt') as file, open('open_ips.txt', 'w') as output:
-    for line in file:
-        ip = line.split('/')[0].strip()
+with open('TLS.txt') as 文件, open('open_ips.txt', 'w') as 输出:
+    for 行 in 文件:
+        ip = 行.split('/')[0].strip()
         try:
-            upload_speed, download_speed = measure_speed(ip)
-            output.write(f"{ip} - Upload Speed: {upload_speed:.2f} MB/s, Download Speed: {download_speed:.2f} MB/s\n")
+            上传速度, 下载速度 = 测量速度(ip)
+            输出.write(f"{ip} - 上传速度: {上传速度:.2f} MB/s, 下载速度: {下载速度:.2f} MB/s\n")
         except Exception as e:
-            output.write(f"{ip} - Error: {e}\n")
+            输出.write(f"{ip} - 错误: {e}\n")
