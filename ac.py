@@ -38,6 +38,6 @@ with open('TLS.txt') as 文件, open('open_ips.txt', 'w') as 输出:
         ip = 行.split('/')[0].strip()
         try:
             上传速度, 下载速度 = 测量速度(ip)
-            输出.write(f"{ip} - 上传速度: {上传速度:.2f} MB/s, 下载速度: {下载速度:.2f} MB/s\n")
+            输出.write(f"{ip}\n")
         except Exception as e:
-            输出.write(f"{ip} - 错误: {e}\n")
+            pass  # 忽略错误，不写入输出文件
