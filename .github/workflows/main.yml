@@ -35,13 +35,13 @@ jobs:
       - name: Run TLS scan
         run: |
           set -e
-          ./CloudflareST -tp 443 -n 1000
+          ./CloudflareST -tp 443 -n 1000 -httping -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
           python convert_csv_to_tls.py
 
       - name: Run notls scan
         run: |
           set -e
-          ./CloudflareST -tp 80 -n 1000
+          ./CloudflareST -tp 80 -n 1000 -httping -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
           python convert_csv_to_tls.py notls
 
       - name: Commit and push changes
