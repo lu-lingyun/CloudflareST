@@ -38,12 +38,6 @@ jobs:
           ./CloudflareST -tp 443 -httping -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
           python convert_csv_to_tls.py
 
-      - name: Run notls scan
-        run: |
-          set -e
-          ./CloudflareST -tp 80 -httping -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
-          python convert_csv_to_tls.py notls
-
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
