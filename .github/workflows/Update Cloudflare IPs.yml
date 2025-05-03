@@ -1,0 +1,24 @@
+name: Update Cloudflare IPs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC 0点自动运行
+
+jobs:
+  update-ips:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Fetch and process IPs
+      run: |
+        curl -s https://www.cloudflare-cn.com/ips-v4/ | cut -d'/' -f1 > ips.txt
+
+    - name: Commit and push
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add ips.txt
+        git diff --cached --quiet || git commit -m "Update Cloudflare IPs"
+        git push
