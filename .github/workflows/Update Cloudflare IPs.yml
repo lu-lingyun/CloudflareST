@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 0 * * *'  # 每天UTC 0点自动运行
 
+permissions:
+  contents: write
+
 jobs:
   update-ips:
     runs-on: ubuntu-latest
